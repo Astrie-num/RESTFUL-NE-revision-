@@ -20,3 +20,4 @@ const connectDB = () => {
 };
 
 module.exports = {connectDB, connection};
+
