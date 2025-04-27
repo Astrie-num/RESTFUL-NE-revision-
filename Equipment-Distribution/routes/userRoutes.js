@@ -4,6 +4,7 @@ const {connection} = require('../config/db');
 require ('dotenv').config();
 const jwt = require('jsonwebtoken');
 const verifyAdmin = require('../middlewares/adminAuth');
+const verifyToken = require('../middlewares/tokenAuth');
 
 const router = express.Router();
 
@@ -62,14 +63,14 @@ router.post('/login', async (req, res) => {
                 res.status(401).json({message : "Invalid email or password!"});
             }
 
-            // const token = jwt.sign(
-            //     {userId : user.id },
-            //     secretKey = process.env.JWT_SECRET,
-            //     {expiresIn: '1h'}
-            // );
-    
-            // res.status(200).json({ token })
-            res.status(200).json({message : "Login successful"});
+            const token = jwt.sign(
+                {userId : user.id, role : user.role },
+                secretKey = process.env.JWT_SECRET,
+                {expiresIn: '1h'}
+            );
+            
+            res.status(200).json({ token })
+            // res.status(200).json({message : "Login successful"});
         });
        
     }catch(error){
@@ -78,15 +79,7 @@ router.post('/login', async (req, res) => {
     }
 });
     
-router.get('/admin-only', (req, res, next) =>{
-    req.user = {
-        id: 1,
-        email: "uwumviyana@gmail.com ",
-        role: "admin"
-    };
-    next();
-}
-,verifyAdmin, (req, res) => {
+router.get('/admin-only', verifyToken, verifyAdmin, (req, res) => {
 
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
