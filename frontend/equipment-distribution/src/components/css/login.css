@@ -1,0 +1,94 @@
+*{
+    padding: 0;
+}
+
+.signup{
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(252, 252, 252);
+    width: 100%;
+    height:100%;
+    border-radius: 20px;
+    justify-content: space-between;
+
+
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}
+
+.header{
+    font-size: 30px;
+
+}
+
+.form {
+    width: 40%;
+    margin-left: 300px;
+    padding-top: 150px;
+    margin-top: 80px;
+
+}
+
+.form-inputs {
+    width: 80%;
+    margin-top: 40px;
+}
+
+.forgot{
+    margin-top:0px;
+    margin-left: 470px;
+}
+
+input::placeholder {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px; 
+    color: #aaa; 
+  }
+
+input {
+    padding: 10px; 
+    width: 100%;
+    height: 25px;
+    border-radius: 10px;
+    border: 2px solid #dcd7d7ee;
+    outline: none;
+    box-shadow: none; 
+}
+
+
+button {
+    margin-top: 10px; 
+    width: 30%;
+    color:white;
+    font-size: 17px;
+    background-color: #3A5B22;
+    border: none;
+    border-radius: 10px;
+    height:40px;
+    width: 400px;
+    margin-left: 80px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.people-image {
+    width:45%;
+    height: 100%;
+}
+
+.link{
+    margin-left: 180px;
+}
+
+a{
+    text-decoration: none;
+    
+}
+
+a:visited {
+    color: blue; 
+  }
