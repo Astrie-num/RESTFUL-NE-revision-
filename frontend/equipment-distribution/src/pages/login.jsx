@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import people from "../assets/images/images.png";
 import "../components/css/login.css";
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -9,6 +10,8 @@ function Login() {
     emailAddress: '',
     password: '',
   });
+
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,6 +25,8 @@ function Login() {
     e.preventDefault(); // prevent page refresh
     console.log('Form submitted:', formData);
     // Here you can send the form data to your backend API
+
+    navigate('/display');
   };
 
   return (
@@ -33,7 +38,7 @@ function Login() {
         </div>
         
       <div className='form-inputs'>
-        <label for="emailAddress">Email</label>
+        <label htmlFor="emailAddress">Email</label>
         <br></br>
         <input
           type="email"
@@ -43,8 +48,8 @@ function Login() {
           onChange={handleChange}
           required
         />
-        <a  href='#' className='forgot'>forgot password?</a>
-        <label for="password">Password</label>
+        <a  href='/signup' className='forgot'>forgot password?</a>
+        <label htmlFor="password">Password</label>
         <br></br>
         <input
           type="password"
@@ -58,7 +63,7 @@ function Login() {
       </div>
 
         <button type="submit">Login</button>
-        <p className='link'>Don't have an account?<a href='./signup.jsx' className='link-a'>Sign Up</a></p>
+        <p className='link'>Don't have an account?<a href='/signup' className='link-a'>Sign Up</a></p>
       </form>
       <img src={people} alt= "happy people" className='people-image' />
     </div>

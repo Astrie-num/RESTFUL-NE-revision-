@@ -4,7 +4,6 @@ import "../components/css/signup.css";
 import { useNavigate } from 'react-router-dom';
 
 
-
 function SignUp() {
   const [formData, setFormData] = useState({
     firstname: '',
@@ -14,6 +13,8 @@ function SignUp() {
     emailAddress: '',
     password: '',
   });
+
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,8 +28,7 @@ function SignUp() {
     e.preventDefault(); // prevent page refresh
     console.log('Form submitted:', formData);
 
-    const navigate = useNavigate();
-    navigate('./login.jsx')
+    navigate('/login');
 
     // Here you can send the form data to your backend API
   };
@@ -38,7 +38,7 @@ function SignUp() {
       <form  className="form" onSubmit={HandleSubmit} >
         <h2 className='header'>Get Started Now!</h2>
       <div className='form-inputs'>
-        <label for="firstname">Firstname</label>
+        <label htmlFor="firstname">Firstname</label>
         <br></br>
         <input
           type="text"
@@ -49,7 +49,7 @@ function SignUp() {
           required
         />
         <br /><br />
-        <label for="lastname">Lastname</label>
+        <label htmlFor="lastname">Lastname</label>
         <br></br>
         <input
           type="text"
@@ -60,7 +60,7 @@ function SignUp() {
           required
         />
         <br /><br />
-        <label for="department">Department</label>
+        <label htmlFor="department">Department</label>
         <br></br>
         <input
           type="text"
@@ -71,7 +71,7 @@ function SignUp() {
           required
         />
         <br /><br />
-        <label for="position">Position</label>
+        <label htmlFor="position">Position</label>
         <br></br>
         <input
           type="text"
@@ -93,7 +93,7 @@ function SignUp() {
           required
         />
         <br /><br />
-        <label for="password">Position</label>
+        <label htmlFor="password">Password</label>
         <br></br>
         <input
           type="password"
@@ -106,8 +106,8 @@ function SignUp() {
         <br /><br />
       </div>
 
-        <button type="submit" onClick={HandleSubmit}>Register</button>
-        <p className='link'>Have an account?<a href='./login.jsx'>Sign In</a></p>
+        <button type="submit">Register</button>
+        <p className='link'>Have an account?<a href='/login'>Sign In</a></p>
       </form>
       <img src={people} alt= "happy people" className='people-image' />
     </div>
