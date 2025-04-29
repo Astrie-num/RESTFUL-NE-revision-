@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import people from "../assets/images/images.png";
 import "../components/css/login.css";
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 
@@ -21,12 +22,24 @@ function Login() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); // prevent page refresh
-    console.log('Form submitted:', formData);
+    // console.log('Form submitted:', formData);
     // Here you can send the form data to your backend API
+    try{
+      const response = await axios.post('http://localhost:5000/login', formData);
+      const {token} = response.data;
+      localStorage.setItem('authToken', token);
+      console.log('Token', token);
+     
+      alert("Login Successful!");
+      navigate('/common');
+    
+    }catch(err){
+      console.error('There was an error', err);
+      alert('Login failed!');
+    }
 
-    navigate('/display');
   };
 
   return (

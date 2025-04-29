@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import people from "../assets/images/images.png";
 import "../components/css/signup.css";
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 function SignUp() {
@@ -24,13 +25,19 @@ function SignUp() {
     }));
   };
 
-  const HandleSubmit = (e) => {
+  const HandleSubmit = async(e) => {
     e.preventDefault(); // prevent page refresh
-    console.log('Form submitted:', formData);
+    console.log(formData);
+    try{
+      await axios.post('http://localhost:5000/register', formData);
+      alert("Registration Successful!");
+    
+      navigate('/login');
+    }catch(err){
+      console.error('There was an error', err);
+      alert('Registration failed!');
+    }
 
-    navigate('/login');
-
-    // Here you can send the form data to your backend API
   };
 
   return (
@@ -82,7 +89,7 @@ function SignUp() {
           required
         />
         <br /><br />
-        <label for="emailAddress">Email</label>
+        <label htmlFor="emailAddress">Email</label>
         <br></br>
         <input
           type="email"

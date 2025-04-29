@@ -96,7 +96,7 @@ router.post('/register', async (req, res) => {
                     console.error('Error inserting data:', err);
                     return res.status(500).json({ error: 'Database error' });
                   }
-                  
+                  console.log(req.body);
                   res.status(201).json({ message: 'Data added successfully', data: results });
                 
         });
@@ -206,12 +206,12 @@ router.post('/login', async (req, res) => {
             }
 
             const token = jwt.sign(
-                {userId : user.id, role : user.role },
-                secretKey = process.env.JWT_SECRET,
+                {userId:user.id, role:user.role },
+                process.env.JWT_SECRET,
                 {expiresIn: '15m'}
             );
             
-            res.status(200).json({ token })
+            res.status(200).json({ token, user })
         });
        
     }catch(error){
